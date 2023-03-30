@@ -1,7 +1,8 @@
 // const https = require('https')
 import fs from "fs";
-// const { Client } = require("@bhavjit/khan-api")
-// const client = new Client()
+// import fetch from "node-fetch";
+import { Client } from "@bhavjit/khan-api";
+const client = new Client();
 
 // async function main() {
 //     const replies = await client.getAllMessageReplies("ag5zfmtoYW4tYWNhZGVteXJBCxIIVXNlckRhdGEiHmthaWRfMTAzNzkwNDA4MTM5MTE4NzA4MDQ5ODUwNwwLEghGZWVkYmFjaxiAgJOjuLmJCww")
@@ -39,6 +40,18 @@ import fs from "fs";
 //     https.get("https://purge.jsdelivr.net/gh/thelegendski/automated@master/primaveraContestants.js");
 // }
 // main()
-fs.writeFile('./primaveraContestants.js', `hello, world!`, err => {
+
+let rawContestants = (await (await fetch("https://raw.githubusercontent.com/thelegendski/automated/main/officialPrimaveraContestants.js")).text());
+let parsedContestants = JSON.parse(eval(rawContestants.split("\n")[0].replace("var contestants = ", "JSON.stringify(").concat(")")))
+let myTeam = parsedContestants.filter(x => x.team == "Aequor");
+
+myTeam = await Promise.all(myTeam.map(async v => {
+    let k = v.kaid.split("/").slice(-1)[0];
+    let u = await client.getUser(k);
+    return { user: u, pdata: v};
+}));
+
+fs.writeFile('./primaveraContestants.js', `var teamData = \`${JSON.stringify(myTeam)}\`;`, err => {
     if (err) console.error(err)
 })
+await fetch("https://purge.jsdelivr.net/gh/white-mice/automated@master/primaveraContestants.js");
