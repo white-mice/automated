@@ -39,8 +39,6 @@ import fs from "fs";
 //     https.get("https://purge.jsdelivr.net/gh/thelegendski/automated@master/primaveraContestants.js");
 // }
 // main()
-(async() => {
-    fs.writeFile('./primaveraContestants.js', `hello, world!`, err => {
-        if (err) console.error(err)
-    })
-})();
+fs.writeFile('./primaveraContestants.js', `hello, world!`, err => {
+    if (err) console.error(err)
+})

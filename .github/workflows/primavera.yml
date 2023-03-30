@@ -19,7 +19,7 @@ jobs:
                 node-version: "18"
             - run: npm i @bhavjit/khan-api
             - name: run script
-              run: node "./primavera.js"
+              run: node --no-warnings "./primavera.mjs"
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                 commit_message: update primavera contestants
