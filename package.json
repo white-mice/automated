@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@bhavjit/khan-api": "^0.5.2",
-    "node-fetch": ""
+    "@bhavjit/khan-api": "^0.5.4"
   }
 }
