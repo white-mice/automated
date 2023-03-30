@@ -1,5 +1,5 @@
 // const https = require('https')
-const fs = require('fs')
+import fs from "fs";
 // const { Client } = require("@bhavjit/khan-api")
 // const client = new Client()
 
