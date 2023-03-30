@@ -1,6 +1,5 @@
 // const https = require('https')
 import fs from "fs";
-// import fetch from "node-fetch";
 import { Client } from "@bhavjit/khan-api";
 const client = new Client();
 
