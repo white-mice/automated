@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@bhavjit/khan-api": "^0.5.2"
+    "@bhavjit/khan-api": "^0.5.4"
   }
 }
